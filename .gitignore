@@ -129,6 +129,23 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
+
 # Markdown story files
 *.md
+!README.md
 !test.md
