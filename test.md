@@ -100,17 +100,19 @@ If you lose this encounter, [go here](2.a.EntranceCombatLose).
 
 You deal the killing blow.
 
-You find **2 gold coins** on their person.
+You find **2 gold coins** on their person. If you wish, add this to the ***'Gold'*** field on your character sheet.
 
-Add the **Gold** to your character sheet and [venture further into the dark cavern ahead](3.FirstFork).
+{takeGold(gold=2)}
 
-{addGold(gold=2)}
+With the entrance now unguarded, you're free to [venture further into the dark cavern ahead](3.FirstFork).
 
 # 2.a.EntranceCombatLose
 
 The guard's halberd delivers the final blow. This is where your adventure ends.
 
 Create a new hero and [try again here](1.Start).
+
+{gameOver()}
 
 # 2.a.EntranceCombatFlee
 
@@ -130,7 +132,7 @@ If you succeed, [go here](2.b.EntranceSneakSucc).
 
 If you fail, [go here](2.b.EntranceSneakFail).
 
-{abilityRoll(ability=sneak, target=10, success_pass='2.b.EntranceSneakSucc', fail_pass='2.b.EntranceSneakFail')}
+{abilityRoll(ability='sneak', target=10, success_pass='2.b.EntranceSneakSucc', fail_pass='2.b.EntranceSneakFail')}
 
 # 2.b.EntranceSneakSucc
 
@@ -170,7 +172,7 @@ If you succeed, [go here](2.c.EntranceTalkSucc).
 
 If you fail, [go here](2.c.EntranceTalkFail).
 
-{abilityRoll(ability=charm, target=14, success_pass='2.c.EntranceTalkSucc', fail_pass='2.c.EntranceTalkFail')}
+{abilityRoll(ability='charm', target=14, success_pass='2.c.EntranceTalkSucc', fail_pass='2.c.EntranceTalkFail')}
 
 # 2.c.EntranceTalkSucc
 
