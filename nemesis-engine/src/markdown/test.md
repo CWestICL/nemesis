@@ -74,7 +74,7 @@ Without any other suitable points of entry, [you make your way towards the slope
 
 You find an open archway guarded by an imposing green creature. He appears to be asleep, but they have a tight grip on their halberd.
 
-If you want to take the guard by surprise and attack, [go here2](.a.EntranceCombatSurprise).
+If you want to take the guard by surprise and attack, [go here](2.a.EntranceCombatSurprise).
 
 If you want to try and sneak past the guard, [go here](2.b.EntranceSneak).
 
@@ -196,7 +196,7 @@ You infuriate the creature further and they swing their weapon at you in frustra
 
 The guard isn't done with you. [You have no choice but to fight the creature](2.b.EntranceCombat).
 
-3.FirstFork
+# 3.FirstFork
 
 You venture further into the pitch-black cavern. You follow the passageway until you approach a junction.
 

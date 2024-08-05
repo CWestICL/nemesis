@@ -19,6 +19,9 @@
 .center {
   text-align: center;
 }
+.underline {
+  text-decoration: underline;
+}
 
 @keyframes logo-spin {
   from {

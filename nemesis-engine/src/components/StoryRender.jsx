@@ -1,30 +1,32 @@
 import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
+import parse from 'html-react-parser';
+import $ from 'jquery';
 import '../App.css'
 
-function StoryRender({ storyText, storyPassage }) {
-  //console.log("Story:")
-  //console.log(storyText)
-  let splitStory = storyText.split('\r\n# ')
-  splitStory[0] = splitStory[0].substring(2)
-  let story = {}
-  for (let i = 0; i < splitStory.length; i++) {
-    let lines = splitStory[i].split('\r\n')
-    //console.log("Section " + i)
-    //console.log(lines)
-    let name = lines.shift()
-    lines.shift()
-    story[name] = lines
-  }
-  let renderStory
-  if (storyText) {
-    renderStory = story[storyPassage].join('\r\n')
+function StoryRender({ parsedStory, storyPassage, setStoryPassage }) {
+  let renderStory = <ReactMarkdown>'### Loading...'</ReactMarkdown>
+  if (parsedStory && storyPassage) {
+    renderStory = parsedStory[storyPassage].map((element) => parse(element, {
+      replace(domNode) {
+        if (domNode.attribs && domNode.attribs.onclick) {
+          console.log("Hello?:", domNode);
+          console.log("Hello?:", domNode.attribs);
+          console.log("Hello?:", domNode.attribs.onclick.substring(17, domNode.attribs.onclick.length - 2));
+          console.log("Hello?:", typeof domNode.attribs);
+          let click = domNode.attribs.onclick.substring(17, domNode.attribs.onclick.length - 2);
+          delete domNode.attribs.onclick;
+          domNode.attribs.onclick = click;
+          return (<a onClick={() => { setStoryPassage(click) }}>{domNode.children[0].data}</a>)
+        }
+      }
+    }));
   }
 
   return (
     <>
       <div>
-        <ReactMarkdown>{renderStory}</ReactMarkdown>
+        {renderStory}
       </div>
     </>
   )
