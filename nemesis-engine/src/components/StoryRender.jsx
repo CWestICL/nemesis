@@ -2,22 +2,24 @@ import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import parse from 'html-react-parser';
 import $ from 'jquery';
-import '../App.css'
+import '../Game.css'
 
 function StoryRender({ parsedStory, storyPassage, setStoryPassage }) {
-  let renderStory = <ReactMarkdown>'### Loading...'</ReactMarkdown>
+  console.log('StoryRender Component Rendered');
+  let renderStory = <ReactMarkdown className='center'># Loading...</ReactMarkdown>
   if (parsedStory && storyPassage) {
+    console.log('Rendering parsed story...');
     renderStory = parsedStory[storyPassage].map((element) => parse(element, {
       replace(domNode) {
         if (domNode.attribs && domNode.attribs.onclick) {
-          console.log("Hello?:", domNode);
-          console.log("Hello?:", domNode.attribs);
-          console.log("Hello?:", domNode.attribs.onclick.substring(17, domNode.attribs.onclick.length - 2));
-          console.log("Hello?:", typeof domNode.attribs);
+          //console.log('Found domNode with onclick:');
+          //console.log(domNode);
+          //console.log('domNode attribs:');
+          //console.log(domNode.attribs)
           let click = domNode.attribs.onclick.substring(17, domNode.attribs.onclick.length - 2);
           delete domNode.attribs.onclick;
           domNode.attribs.onclick = click;
-          return (<a onClick={() => { setStoryPassage(click) }}>{domNode.children[0].data}</a>)
+          return (<a onClick={() => { setStoryPassage(click) }}>{domNode.children[0].data}</a>);
         }
       }
     }));
