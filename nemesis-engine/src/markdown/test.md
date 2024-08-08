@@ -6,7 +6,7 @@
 
 **Hark, adventurer!** This is a test file for a *Gods of Fate* adventure. Make sure you [read this section on how to play](0.a.Rules).
 
-If you've already read the rules and prepared a character sheet, [begin your adventure here](1.Start)!
+If you've already read the rules and prepared a character sheet, [begin your adventure here](0.b.Options)!
 
 # 0.a.Rules
 ## GODS OF FATE{.center}
@@ -47,7 +47,15 @@ Your character has 5 main abilities that they will be relying on throughout the 
 
 * **FLUKE**: The extent of which the *Gods of Fate* smile upon you. This ability will determine how lucky your adventurer is in times of potential danger and misfortune. This ability can also be actively called upon during combat to sway a fight in your favour.
 
-When creating your character, you have 4 die types to assign to your abilities, the  **D4**, **D6**, **D8** and **D10**.  Assign each of these die types to the abilities of your choice. The maximum value of the die you assign to each ability is the **Ability Score** for that ability. The higher your **Ability Score** is, the better chance you have at succeeding when using that ability. The ability that you did not assign a die type to gets a score of 0. Note down the **Ability Score** for each of your abilities on your character sheet.
+When creating your character, you have 4 die types to assign to your abilities, the  **D4**, **D6**, **D8** and **D10**. These dictate your adventure's level of competency in each of these abilities:
+
+* **D10** - Your **Mastered** ability
+* **D8** - Your **Skilled** ability
+* **D6** - Your **Adequate** ability
+* **D4** - Your **Lacklustre** ability
+* **0** - Your **Calamitous** ability
+
+Assign each of these die types to the abilities of your choice. The maximum value of the die you assign to each ability is the **Ability Score** for that ability. The higher your **Ability Score** is, the better chance you have at succeeding when using that ability. The ability that you did not assign a die type to gets a score of 0. Note down the **Ability Score** for each of your abilities on your character sheet.
 
 > *Example:*
 > 
@@ -57,9 +65,21 @@ The small box in the corner of each ability field is to keep a record of the **I
 
 ---
 
-Once you have familiarised yourself with the rules and have filled out your character sheet, you may [begin your adventure here](1.Start)!
+Once you have familiarised yourself with the rules and have filled out your character sheet, you may [begin your adventure here](0.b.Options)!
 
 Good luck, and may the *Gods of Fate* smile upon you...
+
+# 0.b.Options
+
+This is where options for dice and character sheets will be.
+
+[Create a character here](0.c.CreateCharcter)!
+
+# 0.c.CreateCharcter
+
+### CREATE YOUR CHARACTER{.center .underline}
+
+{createCharacter(exit_pass='1.Start')}
 
 # 1.Start
 
