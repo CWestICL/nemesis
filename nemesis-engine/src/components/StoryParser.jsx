@@ -3,9 +3,9 @@ import $ from 'jquery';
 import ReactMarkdown from 'react-markdown'
 
 function StoryParser({ storyHTML, parsedStory, setParsedStory }) {
-  console.log('StoryParser Component Rendered');
+  //console.log('StoryParser Component Rendered');
   if (storyHTML && !(parsedStory)) {
-    console.log('Parsing HTML...');
+    //console.log('Parsing HTML...');
     //console.log('storyHTML length:\n' + storyHTML.length);
     storyHTML = $(storyHTML);
 
@@ -22,11 +22,11 @@ function StoryParser({ storyHTML, parsedStory, setParsedStory }) {
         if (storyHTML[i].innerHTML.includes('{')) {
           //console.log('Code injection brackets {} found!');
           let code = storyHTML[i].innerHTML.match('\\{.*}')[0];
-          code = code.substring(1, code.length-1);
+          code = code.slice(1, code.length-1);
           if (code.startsWith('.')) {
             //console.log('Adding injected classes...');
             const subtract = storyHTML[i].innerHTML.length - (code.length + 2);
-            storyHTML[i].innerHTML = storyHTML[i].innerHTML.substring(0, subtract);
+            storyHTML[i].innerHTML = storyHTML[i].innerHTML.slice(0, subtract);
             const classes = code.split(' ');
             for (let x = 0; x < classes.length; x++) {
               storyHTML[i].classList.add(classes[x].substring(1));

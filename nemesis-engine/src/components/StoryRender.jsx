@@ -1,25 +1,49 @@
-import { useState } from 'react'
-import ReactMarkdown from 'react-markdown'
+import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import parse from 'html-react-parser';
 import $ from 'jquery';
-import '../Game.css'
+import '../Game.css';
+import CreateCharacter from './CreateCharacter';
 
-function StoryRender({ parsedStory, storyPassage, setStoryPassage }) {
-  console.log('StoryRender Component Rendered');
+function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterSheet, setCharacterSheet }) {
+  //console.log('StoryRender Component Rendered');
   let renderStory = <ReactMarkdown className='center'># Loading...</ReactMarkdown>
   if (parsedStory && storyPassage) {
-    console.log('Rendering parsed story...');
+    //console.log('Rendering parsed story...');
     renderStory = parsedStory[storyPassage].map((element) => parse(element, {
       replace(domNode) {
+        //console.log('domNode:');
+        //console.log(domNode);
         if (domNode.attribs && domNode.attribs.onclick) {
           //console.log('Found domNode with onclick:');
           //console.log(domNode);
           //console.log('domNode attribs:');
           //console.log(domNode.attribs)
-          let click = domNode.attribs.onclick.substring(17, domNode.attribs.onclick.length - 2);
+          let click = domNode.attribs.onclick.slice(17, domNode.attribs.onclick.length - 2);
           delete domNode.attribs.onclick;
           domNode.attribs.onclick = click;
           return (<a onClick={() => { setStoryPassage(click) }}>{domNode.children[0].data}</a>);
+        }
+        if (domNode.data && domNode.data.startsWith('{')) {
+          //console.log('Found domNode with injection brackets {}:');
+          //console.log(domNode);
+          let code = domNode.data.slice(1, domNode.data.length - 1);
+          code = code.charAt(0).toUpperCase() + code.slice(1);
+          code = code.split('(');
+          const componentName = code[0];
+          //console.log('Component name: ' + componentName);
+          const argsStr = code[1].slice(0, code[1].length - 1);
+          const args = {};
+          for (let i = 0; i < argsStr.split(', ').length; i++) {
+            let argPair = argsStr.split(', ')[i].split('=');
+            args[argPair[0]] = eval(argPair[1]);
+          }
+          console.log('Args: ');
+          console.log(args);
+          if (componentName == 'CreateCharacter') {
+            console.log('Replacing with CreateCharacter!');
+            return (<CreateCharacter {...args} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} setStoryPassage={setStoryPassage} />)
+          }
         }
       }
     }));
