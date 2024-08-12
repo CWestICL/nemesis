@@ -8,7 +8,7 @@ This is a story file for testing the Nemesis Engine, a tool for rendering *Gods 
 
 [Check the rules page for text formatting demonstration](0.a.Rules).
 
-Otherwise, [begin your adventure here](0.b.Options)!
+Otherwise, [begin your adventure here](0.b.Mode)!
 
 # 0.a.Rules
 ## GODS OF FATE{.center}
@@ -38,15 +38,13 @@ These are the different header sizes.
 >
 >This is normal text. This is *italic* text. This is **bold** text. This is ***bold italic*** text.
 
-Now that you've seen how text can be formatted, you may [begin your adventure here](0.b.Options)!
+Now that you've seen how text can be formatted, you may [begin your adventure here](0.b.Mode)!
 
-# 0.b.Options
+# 0.b.Mode
 
-This is where options for dice and character sheets will be.
+### GAME MODE{.center .underline}
 
-[Create a character here](0.c.CreateCharcter)!
-
-Or [just skip to the start here](1.Start)!
+{modeMenu(exit_pass='0.c.CreateCharcter')}
 
 # 0.c.CreateCharcter
 

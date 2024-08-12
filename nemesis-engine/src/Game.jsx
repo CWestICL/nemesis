@@ -8,6 +8,32 @@ import StoryRender from './components/StoryRender'
 import StoryParser from './components/StoryParser'
 import CharacterSheet from './components/CharacterSheet'
 
+const testItems = [
+  {
+    name: 'Silver Key',
+    bonus: null,
+  },
+  {
+    name: 'Old Helmet',
+    bonus: '-1 Enemy AS',
+  },
+  {
+    name: 'Rope',
+    bonus: null,
+  },
+]
+
+const testTreasure = [
+  {
+    name: 'Gold Necklace',
+    value: 10,
+  },
+  {
+    name: 'Crystal Chalice',
+    value: 50,
+  },
+]
+
 const initialCharacter = {
   name: '',
   abilities: {
@@ -23,9 +49,8 @@ const initialCharacter = {
     fluke: 0,
   },
   stats: {
-    init_health: 0,
+    max_health: 0,
     health: 0,
-    init_crit: 0,
     crit: 0,
     gold: 0,
     potions: 0,
@@ -34,8 +59,8 @@ const initialCharacter = {
     name: "Adventurer's Sword",
     bonus: '+2 AS',
   },
-  treasure: [],
-  items: [],
+  treasure: testTreasure,
+  items: testItems,
   notes: '',
 }
 
@@ -47,6 +72,7 @@ function Game() {
   const [parsedStory, setParsedStory] = useState(null);
   const [storyPassage, setStoryPassage] = useState('0.Title');
   const [characterSheet, setCharacterSheet] = useState(initialCharacter);
+  const [mode, setMode] = useState('Pen and Paper');
 
   async function fetchStory(){
 		try {
@@ -84,8 +110,8 @@ function Game() {
         <ReactMarkdown children={storyText} />
       </div>
       <div className="story">
-        <StoryRender parsedStory={parsedStory} storyPassage={storyPassage} setStoryPassage={setStoryPassage} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet}/>
-        <CharacterSheet characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} />
+        <StoryRender parsedStory={parsedStory} storyPassage={storyPassage} setStoryPassage={setStoryPassage} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} mode={mode} setMode={setMode}/>
+        <CharacterSheet characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} mode={mode}/>
       </div>
     </>
   )

@@ -1,19 +1,259 @@
 @import url('https://fonts.googleapis.com/css2?family=Germania+One&family=IM+Fell+DW+Pica+SC&display=swap');
 
 #root {
-  margin: 0 auto;
-  padding: 2rem;
-  min-height: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .story {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.story-render-container {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.story-render {
   text-align: justify;
-  width: 60vw;
+  max-width: 42em;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 .character-sheet {
-  background-color: black;
-  color: red;
+  background-color: bisque;
+  color: black;
+  float: right;
+  padding: 1em;
+  width: 24rem;
+  display: flex;
+  flex-direction: column;
+}
+.cs-title {
+  text-align: center;
+  font-family: 'Germania One', serif;
+}
+.cs-top {
+  display: flex;
+  flex-direction: column;
+}
+.cs-name {
+  display: flex;
+  border-style: double;
+  padding: 0.5em;
+  margin: 0.2em;
+}
+.cs-name-input {
+  flex: 1;
+  margin-left: 1em;
+  font-size: 0.9em;
+  background-color: antiquewhite;
+  border-radius: 8px;
+  padding: 0 0.5em;
+}
+.cs-health {
+  border-style: double;
+  padding: 0.5em;
+  margin: 0.2em;
+}
+.cs-health-content {
+  display: flex;
+  align-items: center;
+}
+.cs-health-stat {
+  background-color: antiquewhite;
+  border-radius: 8px;
+  padding: 0 0.5em;
+  width: 3em;
+  font-weight: bold;
+}
+.cs-max-health-stat {
+  background-color: antiquewhite;
+  border-radius: 8px;
+  padding: 0 0.5em;
+  width: 3em;
+  font-style: italic;
+}
+.cs-health-input {
+  background-color: antiquewhite;
+  border-radius: 8px;
+  padding: 0 0.5em;
+  width: 2em;
+  height: 2em;
+  margin-right: 0.5em;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.cs-max-health-input {
+  background-color: antiquewhite;
+  border-radius: 8px;
+  padding: 0 0.5em;
+  width: 2em;
+  height: 2em;
+  margin-left: 0.5em;
+  font-size: 1.1em;
+  font-style: italic;
+}
+.cs-health-bar {
+  flex: 1;
+  margin-left: 1em;
+}
+.cs-health-bar-high {
+  accent-color: lime;
+}
+.cs-health-bar-med {
+  accent-color: gold;
+}
+.cs-health-bar-low {
+  accent-color: red;
+}
+.cs-abilities {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cs-ability-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-style: double;
+  height: 4.5em;
+  width: 4em;
+  padding: 0.5em;
+  margin: 0.2em;
+}
+.cs-ability-init {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+  font-style: italic;
+}
+.cs-init-select {
+  border: none;
+  background-color: transparent;
+}
+.cs-ability-score {
+  text-align: center;
+  font-weight: bold;
+}
+.cs-ability-select {
+  background-color: antiquewhite;
+  border-radius: 8px;
+  font-size: 1.2em;
+}
+.cs-stats {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cs-stats-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-style: double;
+  height: 4.5em;
+  width: 4em;
+  padding: 0.5em;
+  margin: 0.2em;
+}
+.cs-stat {
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  font-size: 1.2em;
+}
+.cs-stats-input {
+  background-color: antiquewhite;
+  border-radius: 8px;
+  padding: 0 0.5em;
+  width: 2em;
+  height: 2em;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.cs-potions-button {
+  font-size: 0.7em;
+  font-weight: bold;
+  background-color: peru;
+}
+.cs-weapon {
+  border-style: double;
+  padding: 0.5em;
+  margin: 0.2em;
+}
+.cs-weapon-content {
+  display: flex;
+  font-size: 0.9em;
+}
+.cs-weapon-name {
+  background-color: antiquewhite;
+  border-radius: 8px;
+  padding: 0 0.5em;
+  flex: 1;
+}
+.cs-weapon-bonus {
+  background-color: antiquewhite;
+  border-radius: 8px;
+  padding: 0 0.5em;
+}
+.cs-weapon-bonus-input {
+  background-color: antiquewhite;
+  border-radius: 8px;
+  padding: 0 0.5em;
+  width: 8em;
+}
+.cs-inventory {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-style: double;
+  padding: 0.5em;
+  margin: 0.2em;
+}
+.cs-treasure-items {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5em;
+  margin: 0.2em;
+  height: 6em;
+}
+.cs-treasure-container {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+.cs-items-container {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+}
+.cs-items {
+  flex: 1;
+  background-color: antiquewhite;
+  overflow-y: auto;
+  font-family: inherit;
+  resize: none;
+  color: black;
+}
+.cs-notes-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  margin: 0.2em;
+}
+.cs-notes {
+  background-color: antiquewhite;
+  flex: 1;
+  resize: none;
+  font-family: inherit;
 }
 
 .md-mimic {
@@ -77,4 +317,34 @@ label {
 }
 .underline {
   text-decoration: underline;
+}
+
+@media only screen and (max-width: 950px) {
+  .story {
+    flex-direction: column;
+    min-width: 650px;
+    overflow-x: auto;
+  }
+
+  .character-sheet {
+    width: 100%;
+    padding: 0;
+    height: 50%;
+    overflow-y: auto;
+  }
+  .cs-ability-container {
+    width: 20%;
+  }
+  .cs-ability-init {
+    justify-content: center;
+  }
+  .cs-ability-init > * {
+    margin: 0 0.5em;
+  }
+  .cs-stats-container {
+    width: 20%;
+  }
+  .cs-inventory {
+    flex-direction: row;
+  }
 }

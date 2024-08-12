@@ -42,7 +42,6 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
   }
 
   function handleAbility(event) {
-    event.preventDefault();
     //console.log("Ability: " + event.target.innerHTML);
     setAbilityInput({
       ...abilityInput,
@@ -67,8 +66,7 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
       stats: {
         ...characterSheet.stats,
         ...statsInput,
-        init_health: statsInput.health,
-        init_crit: statsInput.crit,
+        max_health: statsInput.health,
       },
     });
 	}, [abilityInput, statsInput]);
@@ -81,7 +79,7 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
   }
   const abilityRender = abilityOptions.map((ability) =>
     <div className='md-mimic'>
-      <a onClick={handleAbility}>{ability.toUpperCase()}</a>
+      <li><a onClick={handleAbility}>{ability.toUpperCase()}</a></li>
     </div>
   );
 
@@ -110,7 +108,9 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
         <div>
           <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D10**?</ReactMarkdown>
           <ReactMarkdown>This will be your adventurer's **Mastered** ability.</ReactMarkdown>
-          {abilityRender}
+          <ul>
+            {abilityRender}
+          </ul>
         </div>
       </>
     )
@@ -122,7 +122,9 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
         <div>
           <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D8**?</ReactMarkdown>
           <ReactMarkdown>This will be your adventurer's **Skilled** ability.</ReactMarkdown>
-          {abilityRender}
+          <ul>
+            {abilityRender}
+          </ul>
         </div>
       </>
     )
@@ -134,7 +136,9 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
         <div>
           <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D6**?</ReactMarkdown>
           <ReactMarkdown>This will be your adventurer's **Adequate** ability.</ReactMarkdown>
-          {abilityRender}
+          <ul>
+            {abilityRender}
+          </ul>
         </div>
       </>
     )
@@ -146,7 +150,9 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
         <div>
           <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D4**?</ReactMarkdown>
           <ReactMarkdown>This will be your adventurer's **Lacklustre** ability.</ReactMarkdown>
-          {abilityRender}
+          <ul>
+            {abilityRender}
+          </ul>
           <ReactMarkdown>*The remaining ability will get an **Ability Score** of **0**!*</ReactMarkdown>
           <ReactMarkdown>This will be your adventurer's **Calamitous** ability.</ReactMarkdown>
         </div>
