@@ -3,9 +3,11 @@ import ReactMarkdown from 'react-markdown';
 import parse from 'html-react-parser';
 import $ from 'jquery';
 import '../Game.css';
+import ModeMenu from './ModeMenu';
 import CreateCharacter from './CreateCharacter';
+import ManualCreateCharacter from './ManualCreateCharacter';
 
-function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterSheet, setCharacterSheet }) {
+function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterSheet, setCharacterSheet, mode, setMode }) {
   //console.log('StoryRender Component Rendered');
   let renderStory = <ReactMarkdown className='center'># Loading...</ReactMarkdown>
   if (parsedStory && storyPassage) {
@@ -40,9 +42,16 @@ function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterShee
           }
           console.log('Args: ');
           console.log(args);
+          if (componentName == 'ModeMenu') {
+            //console.log('Replacing with ModeMenu!');
+            return (<ModeMenu {...args} setMode={setMode} setStoryPassage={setStoryPassage} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} />);
+          }
           if (componentName == 'CreateCharacter') {
-            console.log('Replacing with CreateCharacter!');
-            return (<CreateCharacter {...args} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} setStoryPassage={setStoryPassage} />)
+            //console.log('Replacing with CreateCharacter!');
+            if (mode == 'Automated') {
+              return (<CreateCharacter {...args} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} setStoryPassage={setStoryPassage} />);
+            }
+            return (<ManualCreateCharacter {...args} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} setStoryPassage={setStoryPassage} />)
           }
         }
       }
@@ -51,8 +60,10 @@ function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterShee
 
   return (
     <>
-      <div>
-        {renderStory}
+      <div className='story-render-container'>
+        <div className='story-render'>
+          {renderStory}
+        </div>
       </div>
     </>
   )
