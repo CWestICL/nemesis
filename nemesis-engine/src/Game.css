@@ -241,6 +241,7 @@
   font-family: inherit;
   resize: none;
   color: black;
+  font-size: 0.6em;
 }
 .cs-notes-container {
   flex: 1;
@@ -317,6 +318,23 @@ label {
 }
 .underline {
   text-decoration: underline;
+}
+.danger {
+  color: gold;
+  font-weight: bold;
+  font-style: italic;
+}
+.roll-stat {
+  color: #bababa;
+}
+.roll-stat-result {
+  color: lightskyblue;
+}
+.roll-stat-crit_succ {
+  color: lime;
+}
+.roll-stat-crit_fail {
+  color: red;
 }
 
 @media only screen and (max-width: 950px) {
