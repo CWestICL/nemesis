@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import parse from 'html-react-parser';
 import $ from 'jquery';
-import '../Game.css'
+import '../Game.css';
+import { getAbilityScore } from '../scripts/SharedFunctions';
 
-function CharacterSheet({ characterSheet, setCharacterSheet, mode }) {
+function CharacterSheet({ characterSheet, setCharacterSheet, mode, storyPassage }) {
   //console.log('CharacterSheet Component Rendered');
 
   function handleInput(event) {
@@ -47,13 +48,6 @@ function CharacterSheet({ characterSheet, setCharacterSheet, mode }) {
         potions: characterSheet.stats.potions - 1,
       }
     })
-  }
-
-  function getAbilityScore(value) {
-    if (value > 0) {
-      return 'D' + (4 + (2 * (value - 1)));
-    }
-    return '0';
   }
 
   if (mode != 'Pen and Paper') {
@@ -205,7 +199,7 @@ function CharacterSheet({ characterSheet, setCharacterSheet, mode }) {
 
     let potionsHTML = (<input type="number" id="input-stats-potions" className='cs-stats-input' min='0' max='16' value={characterSheet.stats.potions} onChange={(e) => handleInput(e)} />);
     if (mode == 'Automated') {
-      if (characterSheet.stats.health < characterSheet.stats.max_health && characterSheet.stats.potions > 0) {
+      if (characterSheet.stats.health < characterSheet.stats.max_health && characterSheet.stats.potions > 0 && !(storyPassage.endsWith('!'))) {
         console.log('Button active');
         potionsHTML = (<>
           <div className='cs-ability-score'>{characterSheet.stats.potions}</div>

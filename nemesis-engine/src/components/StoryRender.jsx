@@ -6,9 +6,14 @@ import '../Game.css';
 import ModeMenu from './ModeMenu';
 import CreateCharacter from './CreateCharacter';
 import ManualCreateCharacter from './ManualCreateCharacter';
+import AbilityRoll from './AbilityRoll';
 
 function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterSheet, setCharacterSheet, mode, setMode }) {
   //console.log('StoryRender Component Rendered');
+  let danger = (<></>);
+  if (storyPassage.endsWith('!')) {
+    danger = (<div className='md-mimic danger'>! DANGER !</div>);
+  }
   let renderStory = <ReactMarkdown className='center'># Loading...</ReactMarkdown>
   if (parsedStory && storyPassage) {
     //console.log('Rendering parsed story...');
@@ -30,7 +35,6 @@ function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterShee
           //console.log('Found domNode with injection brackets {}:');
           //console.log(domNode);
           let code = domNode.data.slice(1, domNode.data.length - 1);
-          code = code.charAt(0).toUpperCase() + code.slice(1);
           code = code.split('(');
           const componentName = code[0];
           //console.log('Component name: ' + componentName);
@@ -53,6 +57,10 @@ function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterShee
             }
             return (<ManualCreateCharacter {...args} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} setStoryPassage={setStoryPassage} />)
           }
+          if (componentName == 'AbilityRoll') {
+            //console.log('Replacing with AbilityRoll!');
+            return (<AbilityRoll {...args} mode={mode} setStoryPassage={setStoryPassage} characterSheet={characterSheet} />);
+          }
         }
       }
     }));
@@ -62,6 +70,7 @@ function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterShee
     <>
       <div className='story-render-container'>
         <div className='story-render'>
+          {danger}
           {renderStory}
         </div>
       </div>

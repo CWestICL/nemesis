@@ -111,7 +111,7 @@ function Game() {
       </div>
       <div className="story">
         <StoryRender parsedStory={parsedStory} storyPassage={storyPassage} setStoryPassage={setStoryPassage} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} mode={mode} setMode={setMode}/>
-        <CharacterSheet characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} mode={mode}/>
+        <CharacterSheet characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} mode={mode} storyPassage={storyPassage}/>
       </div>
     </>
   )

@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import $ from 'jquery';
 import '../Game.css'
 import TextField from '@mui/material/TextField';
+import { rollAbility, aOrAn } from '../scripts/SharedFunctions';
 
 const initialAbilities = {
   might: 0,
@@ -161,12 +162,6 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
   }
 
   else if (stage == 6) {
-    function rollDice(value){
-      console.log('Roll value: ' + value);
-      let faces = (4 + (2 * (value - 1)));
-      return Math.floor((Math.random() * faces) + 1)
-    }
-
     const check = {};
     for (let key in characterSheet.abilities) {
       if (!(key.startsWith('init_'))) {
@@ -193,23 +188,23 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
       }
 
       if (characterSheet.abilities.might > 0) {
-        let roll = rollDice(characterSheet.abilities.might);
+        let roll = rollAbility(characterSheet.abilities.might);
         console.log('Health roll: ' + roll);
         stats.health = roll + 12;
       }
       if (characterSheet.abilities.charm > 0) {
-        let roll = rollDice(characterSheet.abilities.charm);
+        let roll = rollAbility(characterSheet.abilities.charm);
         console.log('Crit roll: ' + roll);
         stats.crit = roll + 2;
       }
       if (characterSheet.abilities.magic > 0) {
-        let roll = rollDice(characterSheet.abilities.magic);
+        let roll = rollAbility(characterSheet.abilities.magic);
         console.log('Potion roll: ' + roll);
-        stats.potions = roll +3;
+        stats.potions = roll + 3;
       }
 
-      console.log('Stats:');
-      console.log(stats);
+      //console.log('Stats:');
+      //console.log(stats);
       
       setStatsInput(stats);
 
@@ -217,17 +212,20 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
     }
 
     if (characterSheet.abilities.might > 0) {
-      health = 'Your **MIGHT** rolls a ***' + (characterSheet.stats.health - 12) + '***! Your **Health** is **' + characterSheet.stats.health + '**';
+      let roll = characterSheet.stats.health - 12;
+      health = 'Your **MIGHT** rolls ' + aOrAn(roll) + ' *' + roll + '*! Your **Health** is **' + characterSheet.stats.health + '**';
     }
     if (characterSheet.abilities.charm > 0) {
-      crit = 'Your **CHARM** rolls a ***' + (characterSheet.stats.crit - 2) + '***! Your **Crit** is **' + characterSheet.stats.crit + '**';
+      let roll = characterSheet.stats.crit - 2;
+      crit = 'Your **CHARM** rolls ' + aOrAn(roll) + ' *' + roll + '*! Your **Crit** is **' + characterSheet.stats.crit + '**';
     }
     if (characterSheet.abilities.magic > 0) {
-      potions = 'Your **MAGIC** rolls a ***' + (characterSheet.stats.potions - 3) + '***! You have **' + characterSheet.stats.potions + ' Potions**';
+      let roll = characterSheet.stats.potions - 3;
+      potions = 'Your **MAGIC** rolls ' + aOrAn(roll) + ' *' + (roll) + '*! You have **' + characterSheet.stats.potions + ' Potions**';
     }
 
-    console.log('sheet');
-    console.log(characterSheet);
+    //console.log('sheet');
+    //console.log(characterSheet);
 
     if (rolled) {
       return (

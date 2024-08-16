@@ -44,13 +44,13 @@ Now that you've seen how text can be formatted, you may [begin your adventure he
 
 ### GAME MODE{.center .underline}
 
-{modeMenu(exit_pass='0.c.CreateCharcter')}
+{ModeMenu(exit_pass='0.c.CreateCharcter')}
 
 # 0.c.CreateCharcter
 
 ### CREATE YOUR CHARACTER{.center .underline}
 
-{createCharacter(exit_pass='1.Start')}
+{CreateCharacter(exit_pass='1.Start')}
 
 # 1.Start
 
@@ -65,7 +65,7 @@ To see how branching paths work, [you make your way into the room ahead](2.Entra
 
 You find yourself in the Hall of Testing.
 
-If you test a **Danger** passage, [go here](2.a.Danger).
+If you test a **Danger** passage, [go here](2.a.Danger!).
 
 If you want to test an **Ability Roll**, [go here](2.b.AbilityRoll).
 
@@ -79,9 +79,7 @@ If you want to test taking damage, [go here](2.f.Damage).
 
 If you want to test a **Game Over**, [go here](2.g.GameOver).
 
-# 2.a.Danger
-
-⚠️
+# 2.a.Danger!
 
 This is a **Danger** passage.
 
@@ -93,13 +91,7 @@ To go back to the Hall of Testing, [go here](2.Entrance).
 
 You decide to sneak past the monster.
 
-Make a **SNEAK (10)** roll!
-
-If you succeed, [go here](2.b.AbilityRollSucc).
-
-If you fail, [go here](2.b.AbilityRollFail).
-
-{abilityRoll(ability='sneak', target=10, success_pass='2.b.AbilityRollSucc', fail_pass='2.b.AbilityRollFail')}
+{AbilityRoll(ability='sneak', target=10, success_pass='2.b.AbilityRollSucc', fail_pass='2.b.AbilityRollFail')}
 
 To go back to the Hall of Testing, [go here](2.Entrance).
 
@@ -119,7 +111,7 @@ To go back to the Hall of Testing, [go here](2.Entrance).
 
 You find **2 gold coins** on their person. If you wish, add this to the ***'Gold'*** field on your character sheet.
 
-{takeGold(gold=2)}
+{TakeGold(gold=2)}
 
 To go back to the Hall of Testing, [go here](2.Entrance).
 
@@ -137,7 +129,7 @@ You may attempt to **Flee** this fight. If you successfully **Flee**, [go here](
 
 If you lose this encounter, [go here](2.e.CombatLose).
 
-{comabt(might=4, health=3, flee=true, win_pass='2.e.CombatWin', lose_pass='2.e.CombatLose', flee_pass='2.e.CombatFlee')}
+{Comabt(might=4, health=3, flee=true, win_pass='2.e.CombatWin', lose_pass='2.e.CombatLose', flee_pass='2.e.CombatFlee')}
 
 # 2.e.CombatWin
 
@@ -163,7 +155,7 @@ A piano suddenly drops on your head. Ouch!
 
 **Take 1 point of damage**.
 
-{takeDamage(damage=1)}
+{TakeDamage(damage=1)}
 
 To go back to the Hall of Testing, [go here](2.Entrance).
 
@@ -173,6 +165,6 @@ You get shot with a gun and die.
 
 Create a new hero and [try again here](1.Start).
 
-{gameOver()}
+{GameOver()}
 
 To go back to the Hall of Testing, [go here](2.Entrance).
