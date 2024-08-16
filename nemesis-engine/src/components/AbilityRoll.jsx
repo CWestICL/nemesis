@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import parse from 'html-react-parser';
 import '../Game.css';
-import { getAbilityScore, rollDie, rollAbility, aOrAn } from '../scripts/SharedFunctions';
+import { getDieFaces, rollDie, rollAbility, aOrAn } from '../scripts/SharedFunctions';
 
 function AbilityRoll({ mode, setStoryPassage, characterSheet, ability, target, success_pass, fail_pass }) {
   //console.log('ModeMenu Component Rendered');
@@ -13,31 +13,28 @@ function AbilityRoll({ mode, setStoryPassage, characterSheet, ability, target, s
   function handleRoll() {
     //console.log('CS:');
     //console.log(characterSheet);
-    let skillRoll = rollDie(20);
-    let skillHTML = (<p className='md-mimic roll-stat'>Your <strong>Skill</strong> die rolls {aOrAn(skillRoll)} <em>{skillRoll}</em></p>);
-    let abilityRoll = 0;
-    let abilityHTML = null;
+    let fateRoll = rollDie(12);
+    let fateHTML = (<p className='md-mimic roll-stat'>The <strong>Fate</strong> die rolls {aOrAn(fateRoll)} <em>{fateRoll}</em></p>);
 
-    if (characterSheet.abilities[ability] > 0) {
-      abilityRoll = rollAbility(characterSheet.abilities[ability]);
-      abilityHTML = (<p className='md-mimic roll-stat'>Your <strong>{ability.toUpperCase()}</strong> die rolls {aOrAn(abilityRoll)} <em>{abilityRoll}</em></p>);
-    }
+    let abilityRoll = rollAbility(characterSheet.abilities[ability]);
+    let abilityHTML = (<p className='md-mimic roll-stat'>Your <strong>{ability.toUpperCase()}</strong> die rolls {aOrAn(abilityRoll)} <em>{abilityRoll}</em></p>);
 
-    let resultHTML = (<p className='md-mimic roll-stat-result'>Your result is <strong>{skillRoll + abilityRoll}</strong></p>);
-    if (skillRoll > 19) {
-      resultHTML = (<p className='md-mimic roll-stat-crit_succ'>The <strong>Skill</strong> die rolled a <strong>Critical Success</strong>!</p>);
+    let resultHTML = (<p className='md-mimic roll-stat-result'>Your result is <strong>{fateRoll + abilityRoll}</strong></p>);
+
+    if (fateRoll > 11) {
+      resultHTML = (<p className='md-mimic roll-stat-crit_succ'>You rolled a <strong>Critical Success</strong>!</p>);
     }
-    if (skillRoll < 2) {
-      resultHTML = (<p className='md-mimic roll-stat-crit_fail'>The <strong>Skill</strong> die rolled a <strong>Critical Fail</strong>!</p>);
+    if (fateRoll < 2) {
+      resultHTML = (<p className='md-mimic roll-stat-crit_fail'>You rolled a <strong>Critical Fail</strong>!</p>);
     }
 
     let statsHTML = (<>
-      {skillHTML}
+      {fateHTML}
       {abilityHTML}
       {resultHTML}
     </>);
     
-    if ((skillRoll + abilityRoll >= target && skillRoll > 1) || skillRoll > 19) {
+    if ((fateRoll + abilityRoll >= target && fateRoll > 1) || fateRoll > 11) {
       setSuccess(true);
     }
     setRolledStats(statsHTML);

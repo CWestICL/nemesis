@@ -32,4 +32,4 @@ function aOrAn(number) {
   return a;
 }
 
-  export { getAbilityScore, rollDie, rollAbility, aOrAn };
+  export { getDieFaces, getAbilityScore, rollDie, rollAbility, aOrAn };

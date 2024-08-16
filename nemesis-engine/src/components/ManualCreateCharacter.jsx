@@ -20,11 +20,11 @@ function CreateCharacter({ setStoryPassage, exit_pass }) {
           <ReactMarkdown>Enter a name for your adventurer in the ***'Name'*** field on your character sheet.</ReactMarkdown>
           <ReactMarkdown>Assign each of the following **Ability Scores** to the 5 abilities on your character sheet.</ReactMarkdown>
           <ul>
-            <li><ReactMarkdown>**D10** - Your **Mastered** ability</ReactMarkdown></li>
-            <li><ReactMarkdown>**D8** - Your **Skilled** ability</ReactMarkdown></li>
-            <li><ReactMarkdown>**D6** - Your **Adequate** ability</ReactMarkdown></li>
-            <li><ReactMarkdown>**D4** - Your **Lacklustre** ability</ReactMarkdown></li>
-            <li><ReactMarkdown>**0** - Your **Calamitous** ability</ReactMarkdown></li>
+            <li><ReactMarkdown>**D12** - Your **Mastered** ability</ReactMarkdown></li>
+            <li><ReactMarkdown>**D10** - Your **Skilled** ability</ReactMarkdown></li>
+            <li><ReactMarkdown>**D8** - Your **Adequate** ability</ReactMarkdown></li>
+            <li><ReactMarkdown>**D6** - Your **Lacklustre** ability</ReactMarkdown></li>
+            <li><ReactMarkdown>**D4** - Your **Calamitous** ability</ReactMarkdown></li>
           </ul>
           <ReactMarkdown>Make sure you note down these scores in the **Initial Ability Score** fields too.</ReactMarkdown>
           <div className='md-mimic'>

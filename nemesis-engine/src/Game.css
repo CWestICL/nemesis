@@ -278,6 +278,8 @@ h4,
 h5,
 h6 {
   font-family: 'Germania One', serif;
+  margin-block-start: 0.3em;
+  margin-block-end: 0.3em;
 }
 
 h1 {

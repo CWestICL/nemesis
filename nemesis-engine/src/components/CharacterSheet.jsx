@@ -78,110 +78,110 @@ function CharacterSheet({ characterSheet, setCharacterSheet, mode, storyPassage 
     }
 
     let initMightHTML = (<select id="input-abilities-init_might" className='cs-init-select' value={characterSheet.abilities.init_might} onChange={(e) => handleInput(e)}>
-      <option value='0'>0</option>
       <option value='1'>D4</option>
       <option value='2'>D6</option>
       <option value='3'>D8</option>
       <option value='4'>D10</option>
+      <option value='5'>D12</option>
     </select>);
     if (mode == 'Automated') {
       initMightHTML = (<div>{getAbilityScore(characterSheet.abilities.init_might)}</div>);
     }
 
     let mightHTML = (<select id="input-abilities-might" className='cs-ability-select' value={characterSheet.abilities.might} onChange={(e) => handleInput(e)}>
-      <option value='0'>0</option>
       <option value='1'>D4</option>
       <option value='2'>D6</option>
       <option value='3'>D8</option>
       <option value='4'>D10</option>
+      <option value='5'>D12</option>
     </select>);
     if (mode == 'Automated') {
       mightHTML = (<div className='cs-ability-score'>{getAbilityScore(characterSheet.abilities.might)}</div>);
     }
 
     let initMagicHTML = (<select id="input-abilities-init_magic" className='cs-init-select' value={characterSheet.abilities.init_magic} onChange={(e) => handleInput(e)}>
-      <option value='0'>0</option>
       <option value='1'>D4</option>
       <option value='2'>D6</option>
       <option value='3'>D8</option>
       <option value='4'>D10</option>
+      <option value='5'>D12</option>
     </select>);
     if (mode == 'Automated') {
       initMagicHTML = (<div>{getAbilityScore(characterSheet.abilities.init_magic)}</div>);
     }
 
     let magicHTML = (<select id="input-abilities-magic" className='cs-ability-select' value={characterSheet.abilities.magic} onChange={(e) => handleInput(e)}>
-      <option value='0'>0</option>
       <option value='1'>D4</option>
       <option value='2'>D6</option>
       <option value='3'>D8</option>
       <option value='4'>D10</option>
+      <option value='5'>D12</option>
     </select>);
     if (mode == 'Automated') {
       magicHTML = (<div className='cs-ability-score'>{getAbilityScore(characterSheet.abilities.magic)}</div>);
     }
 
     let initSneakHTML = (<select id="input-abilities-init_sneak" className='cs-init-select' value={characterSheet.abilities.init_sneak} onChange={(e) => handleInput(e)}>
-      <option value='0'>0</option>
       <option value='1'>D4</option>
       <option value='2'>D6</option>
       <option value='3'>D8</option>
       <option value='4'>D10</option>
+      <option value='5'>D12</option>
     </select>);
     if (mode == 'Automated') {
       initSneakHTML = (<div>{getAbilityScore(characterSheet.abilities.init_sneak)}</div>);
     }
 
     let sneakHTML = (<select id="input-abilities-sneak" className='cs-ability-select' value={characterSheet.abilities.sneak} onChange={(e) => handleInput(e)}>
-      <option value='0'>0</option>
       <option value='1'>D4</option>
       <option value='2'>D6</option>
       <option value='3'>D8</option>
       <option value='4'>D10</option>
+      <option value='5'>D12</option>
     </select>);
     if (mode == 'Automated') {
       sneakHTML = (<div className='cs-ability-score'>{getAbilityScore(characterSheet.abilities.sneak)}</div>);
     }
 
     let initCharmHTML = (<select id="input-abilities-init_charm" className='cs-init-select' value={characterSheet.abilities.init_charm} onChange={(e) => handleInput(e)}>
-      <option value='0'>0</option>
       <option value='1'>D4</option>
       <option value='2'>D6</option>
       <option value='3'>D8</option>
       <option value='4'>D10</option>
+      <option value='5'>D12</option>
     </select>);
     if (mode == 'Automated') {
       initCharmHTML = (<div>{getAbilityScore(characterSheet.abilities.init_charm)}</div>);
     }
 
     let charmHTML = (<select id="input-abilities-charm" className='cs-ability-select' value={characterSheet.abilities.charm} onChange={(e) => handleInput(e)}>
-      <option value='0'>0</option>
       <option value='1'>D4</option>
       <option value='2'>D6</option>
       <option value='3'>D8</option>
       <option value='4'>D10</option>
+      <option value='5'>D12</option>
     </select>);
     if (mode == 'Automated') {
       charmHTML = (<div className='cs-ability-score'>{getAbilityScore(characterSheet.abilities.charm)}</div>);
     }
 
     let initFlukeHTML = (<select id="input-abilities-init_fluke" className='cs-init-select' value={characterSheet.abilities.init_fluke} onChange={(e) => handleInput(e)}>
-      <option value='0'>0</option>
       <option value='1'>D4</option>
       <option value='2'>D6</option>
       <option value='3'>D8</option>
       <option value='4'>D10</option>
+      <option value='5'>D12</option>
     </select>);
     if (mode == 'Automated') {
       initFlukeHTML = (<div>{getAbilityScore(characterSheet.abilities.init_fluke)}</div>);
     }
 
     let flukeHTML = (<select id="input-abilities-fluke" className='cs-ability-select' value={characterSheet.abilities.fluke} onChange={(e) => handleInput(e)}>
-      <option value='0'>0</option>
       <option value='1'>D4</option>
       <option value='2'>D6</option>
       <option value='3'>D8</option>
       <option value='4'>D10</option>
+      <option value='5'>D12</option>
     </select>);
     if (mode == 'Automated') {
       flukeHTML = (<div className='cs-ability-score'>{getAbilityScore(characterSheet.abilities.fluke)}</div>);
