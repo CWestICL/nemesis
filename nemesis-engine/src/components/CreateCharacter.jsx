@@ -44,9 +44,17 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
 
   function handleAbility(event) {
     //console.log("Ability: " + event.target.innerHTML);
+    if (stage == 5) {
+      for (let ability in abilityInput) {
+        if (abilityInput[ability] == 0) {
+          abilityInput[ability] = 1;
+        }
+      }
+      
+    }
     setAbilityInput({
       ...abilityInput,
-      [event.target.innerHTML.toLowerCase()]: 6 - stage,
+      [event.target.innerHTML.toLowerCase()]: 7 - stage,
     });
     setStage(stage + 1);
   }
@@ -107,7 +115,7 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
     return (
       <>
         <div>
-          <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D10**?</ReactMarkdown>
+          <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D12**?</ReactMarkdown>
           <ReactMarkdown>This will be your adventurer's **Mastered** ability.</ReactMarkdown>
           <ul>
             {abilityRender}
@@ -121,7 +129,7 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
     return (
       <>
         <div>
-          <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D8**?</ReactMarkdown>
+          <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D10**?</ReactMarkdown>
           <ReactMarkdown>This will be your adventurer's **Skilled** ability.</ReactMarkdown>
           <ul>
             {abilityRender}
@@ -135,7 +143,7 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
     return (
       <>
         <div>
-          <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D6**?</ReactMarkdown>
+          <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D8**?</ReactMarkdown>
           <ReactMarkdown>This will be your adventurer's **Adequate** ability.</ReactMarkdown>
           <ul>
             {abilityRender}
@@ -149,12 +157,12 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
     return (
       <>
         <div>
-          <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D4**?</ReactMarkdown>
+          <ReactMarkdown>Which ability would you like to assign an **Ability Score** of **D6**?</ReactMarkdown>
           <ReactMarkdown>This will be your adventurer's **Lacklustre** ability.</ReactMarkdown>
           <ul>
             {abilityRender}
           </ul>
-          <ReactMarkdown>*The remaining ability will get an **Ability Score** of **0**!*</ReactMarkdown>
+          <ReactMarkdown>*The remaining ability will get an **Ability Score** of **D4**!*</ReactMarkdown>
           <ReactMarkdown>This will be your adventurer's **Calamitous** ability.</ReactMarkdown>
         </div>
       </>
@@ -162,46 +170,33 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
   }
 
   else if (stage == 6) {
-    const check = {};
+    let check = false;
     for (let key in characterSheet.abilities) {
-      if (!(key.startsWith('init_'))) {
-        check[key] = characterSheet.abilities[key];
+      if (characterSheet.abilities[key] < 1) {
+        check = true;
       }
     }
 
-    let count = 0;
-    for (let key in check) {
-      if (check[key] == 0) {
-        count ++;
-      } 
-    }
-
-    let health = 'Your **Health** is **12**';
-    let crit = 'Your **Crit** is **2**';
-    let potions = 'You have **3 Potions**';
-
-    if (!(rolled) && count < 2) {
+    if (!(rolled) && !(check)) {
       const stats = {
         health: 12,
         crit: 2,
         potions: 3,
       }
 
-      if (characterSheet.abilities.might > 0) {
-        let roll = rollAbility(characterSheet.abilities.might);
-        console.log('Health roll: ' + roll);
-        stats.health = roll + 12;
-      }
-      if (characterSheet.abilities.charm > 0) {
-        let roll = rollAbility(characterSheet.abilities.charm);
-        console.log('Crit roll: ' + roll);
-        stats.crit = roll + 2;
-      }
-      if (characterSheet.abilities.magic > 0) {
-        let roll = rollAbility(characterSheet.abilities.magic);
-        console.log('Potion roll: ' + roll);
-        stats.potions = roll + 3;
-      }
+      let mightRoll = rollAbility(characterSheet.abilities.might);
+      console.log('Health roll: ' + mightRoll);
+      stats.health = mightRoll + 12;
+      
+
+      let charmRoll = rollAbility(characterSheet.abilities.charm);
+      console.log('Crit roll: ' + charmRoll);
+      stats.crit = charmRoll + 2;
+
+
+      let magicRoll = rollAbility(characterSheet.abilities.magic);
+      console.log('Potion roll: ' + magicRoll);
+      stats.potions = magicRoll + 3;
 
       //console.log('Stats:');
       //console.log(stats);
@@ -211,29 +206,24 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
       setRolled(true);
     }
 
-    if (characterSheet.abilities.might > 0) {
-      let roll = characterSheet.stats.health - 12;
-      health = 'Your **MIGHT** rolls ' + aOrAn(roll) + ' *' + roll + '*! Your **Health** is **' + characterSheet.stats.health + '**';
-    }
-    if (characterSheet.abilities.charm > 0) {
-      let roll = characterSheet.stats.crit - 2;
-      crit = 'Your **CHARM** rolls ' + aOrAn(roll) + ' *' + roll + '*! Your **Crit** is **' + characterSheet.stats.crit + '**';
-    }
-    if (characterSheet.abilities.magic > 0) {
-      let roll = characterSheet.stats.potions - 3;
-      potions = 'Your **MAGIC** rolls ' + aOrAn(roll) + ' *' + (roll) + '*! You have **' + characterSheet.stats.potions + ' Potions**';
-    }
-
-    //console.log('sheet');
-    //console.log(characterSheet);
-
     if (rolled) {
+      let healthRoll = characterSheet.stats.health - 12;
+      let healthStr = 'Your **MIGHT** rolls ' + aOrAn(healthRoll) + ' *' + healthRoll + '*! Your **Health** is **' + characterSheet.stats.health + '**';
+
+      let critRoll = characterSheet.stats.crit - 2;
+      let critStr = 'Your **CHARM** rolls ' + aOrAn(critRoll) + ' *' + critRoll + '*! Your **Crit** is **' + characterSheet.stats.crit + '**';
+
+      let potionsRoll = characterSheet.stats.potions - 3;
+      let potionsStr = 'Your **MAGIC** rolls ' + aOrAn(potionsRoll) + ' *' + (potionsRoll) + '*! You have **' + characterSheet.stats.potions + ' Potions**';
+  
+      //console.log('sheet');
+      //console.log(characterSheet);
       return (
         <>
           <div>
-            <ReactMarkdown>{health}</ReactMarkdown>
-            <ReactMarkdown>{crit}</ReactMarkdown>
-            <ReactMarkdown>{potions}</ReactMarkdown>
+            <ReactMarkdown>{healthStr}</ReactMarkdown>
+            <ReactMarkdown>{critStr}</ReactMarkdown>
+            <ReactMarkdown>{potionsStr}</ReactMarkdown>
             <div className='md-mimic'>
               <p>You're ready to go! <a onClick={() => setStoryPassage(exit_pass)}>Start your adventure here</a>!</p>
             </div>
