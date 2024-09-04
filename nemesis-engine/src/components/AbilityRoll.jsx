@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import parse from 'html-react-parser';
 import '../Game.css';
-import { getDieFaces, rollDie, rollAbility, aOrAn } from '../scripts/SharedFunctions';
+import { rollDie, rollAbility, aOrAn } from '../scripts/SharedFunctions';
 
 function AbilityRoll({ mode, setStoryPassage, characterSheet, ability, target, success_pass, fail_pass }) {
-  //console.log('ModeMenu Component Rendered');
+  //console.log('AbilityRoll Component Rendered');
   const [rolled, setRolled] = useState(false);
   const [success, setSuccess] = useState(false);
   const [rolledStats, setRolledStats] = useState(null);

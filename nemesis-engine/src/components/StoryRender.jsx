@@ -7,6 +7,10 @@ import ModeMenu from './ModeMenu';
 import CreateCharacter from './CreateCharacter';
 import ManualCreateCharacter from './ManualCreateCharacter';
 import AbilityRoll from './AbilityRoll';
+import TakeGold from './TakeGold';
+import TakeItem from './TakeItem';
+import TakeTreasure from './TakeTreasure';
+import TakeWeapon from './TakeWeapon';
 
 function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterSheet, setCharacterSheet, mode, setMode }) {
   //console.log('StoryRender Component Rendered');
@@ -14,7 +18,7 @@ function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterShee
   if (storyPassage.endsWith('!')) {
     danger = (<div className='md-mimic danger'>! DANGER !</div>);
   }
-  let renderStory = <ReactMarkdown className='center'># Loading...</ReactMarkdown>
+  let renderStory = <ReactMarkdown className='center'>## Loading...</ReactMarkdown>
   if (parsedStory && storyPassage) {
     //console.log('Rendering parsed story...');
     renderStory = parsedStory[storyPassage].map((element) => parse(element, {
@@ -60,6 +64,22 @@ function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterShee
           if (componentName == 'AbilityRoll') {
             //console.log('Replacing with AbilityRoll!');
             return (<AbilityRoll {...args} mode={mode} setStoryPassage={setStoryPassage} characterSheet={characterSheet} />);
+          }
+          if (componentName == 'TakeGold') {
+            //console.log('Replacing with TakeGold!');
+            return (<TakeGold {...args} mode={mode} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} />);
+          }
+          if (componentName == 'TakeItem') {
+            //console.log('Replacing with TakeItem!');
+            return (<TakeItem {...args} mode={mode} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} />);
+          }
+          if (componentName == 'TakeTreasure') {
+            //console.log('Replacing with TakeTreasure!');
+            return (<TakeTreasure {...args} mode={mode} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} />);
+          }
+          if (componentName == 'TakeWeapon') {
+            //console.log('Replacing with TakeWeapon!');
+            return (<TakeWeapon {...args} mode={mode} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} />);
           }
         }
       }

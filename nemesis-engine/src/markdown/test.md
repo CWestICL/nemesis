@@ -79,6 +79,12 @@ If you want to test taking damage, [go here](2.f.Damage).
 
 If you want to test a **Game Over**, [go here](2.g.GameOver).
 
+If you want to test taking some **Treasure**, [go here](2.h.Treasure).
+
+If you want to test taking a **Weapon**, [go here](2.i.Weapon).
+
+If you want to test taking a **Cursed Item**, [go here](2.j.CursedItem).
+
 # 2.a.Danger!
 
 This is a **Danger** passage.
@@ -109,13 +115,17 @@ To go back to the Hall of Testing, [go here](2.Entrance).
 
 # 2.c.Gold
 
-You find **2 gold coins** on their person. If you wish, add this to the ***'Gold'*** field on your character sheet.
+You find **2 gold coins** on their person.
 
 {TakeGold(gold=2)}
 
 To go back to the Hall of Testing, [go here](2.Entrance).
 
 # 2.d.Item
+
+You find a rusty old keyring laying in the dirt.
+
+{TakeItem(name='Rusty Keyring')}
 
 To go back to the Hall of Testing, [go here](2.Entrance).
 
@@ -166,5 +176,35 @@ You get shot with a gun and die.
 Create a new hero and [try again here](1.Start).
 
 {GameOver()}
+
+To go back to the Hall of Testing, [go here](2.Entrance).
+
+# 2.h.Treasure
+
+You reach behind the corroded breastplate to pull out the gleaming object around the corpse's neck.
+
+{TakeTreasure(name='Gold Necklace', gold=5)}
+
+To go back to the Hall of Testing, [go here](2.Entrance).
+
+# 2.i.Weapon
+
+You stumble upon a discarded weapon by your feet.
+
+You have found a **Silver Shortsword** that grants you a +3 **Attack Strength** bonus.
+
+{TakeWeapon(name='Silver Shortsword', bonus='+3 AS')}
+
+To go back to the Hall of Testing, [go here](2.Entrance).
+
+# 2.j.CursedItem
+
+You place the helmet on your head and a sharp pain shoots through your entire being.
+
+It is a **Helm of Pain** and it is **Cursed**! You cannot take it off by normal means and while you wear it, your **MIGHT** die is demoted by one die type.
+
+Record the item in the ***'Items'*** field on your character sheet, including its effect.
+
+{TakeItem(name='Helm of Pain', auto=true, bonus='demote might 1')}
 
 To go back to the Hall of Testing, [go here](2.Entrance).

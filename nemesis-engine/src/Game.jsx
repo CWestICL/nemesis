@@ -25,7 +25,7 @@ const testItems = [
 
 const testTreasure = [
   {
-    name: 'Gold Necklace',
+    name: 'Brass Necklace',
     value: 10,
   },
   {
@@ -59,8 +59,8 @@ const initialCharacter = {
     name: "Adventurer's Sword",
     bonus: '+2 AS',
   },
-  treasure: testTreasure,
-  items: testItems,
+  treasure: [],
+  items: [],
   notes: '',
 }
 

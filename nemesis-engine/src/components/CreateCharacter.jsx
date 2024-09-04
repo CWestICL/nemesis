@@ -208,21 +208,27 @@ function CreateCharacter({ characterSheet, setCharacterSheet, setStoryPassage, e
 
     if (rolled) {
       let healthRoll = characterSheet.stats.health - 12;
-      let healthStr = 'Your **MIGHT** rolls ' + aOrAn(healthRoll) + ' *' + healthRoll + '*! Your **Health** is **' + characterSheet.stats.health + '**';
+      let healthRollStr = 'Your **MIGHT** die rolls ' + aOrAn(healthRoll) + ' *' + healthRoll + '*';
+      let healthStr = 'Your **Health** is **' + characterSheet.stats.health + '**!';
 
       let critRoll = characterSheet.stats.crit - 2;
-      let critStr = 'Your **CHARM** rolls ' + aOrAn(critRoll) + ' *' + critRoll + '*! Your **Crit** is **' + characterSheet.stats.crit + '**';
+      let critRollStr = 'Your **CHARM** die rolls ' + aOrAn(critRoll) + ' *' + critRoll + '*';
+      let critStr = 'Your **Crit** is **' + characterSheet.stats.crit + '**!';
 
       let potionsRoll = characterSheet.stats.potions - 3;
-      let potionsStr = 'Your **MAGIC** rolls ' + aOrAn(potionsRoll) + ' *' + (potionsRoll) + '*! You have **' + characterSheet.stats.potions + ' Potions**';
+      let potionsRollStr = 'Your **MAGIC** die rolls ' + aOrAn(potionsRoll) + ' *' + (potionsRoll) + '*';
+      let potionsStr = 'You have **' + characterSheet.stats.potions + ' Potions**';
   
       //console.log('sheet');
       //console.log(characterSheet);
       return (
         <>
           <div>
+            <div className='roll-stat'><ReactMarkdown>{healthRollStr}</ReactMarkdown></div>
             <ReactMarkdown>{healthStr}</ReactMarkdown>
+            <div className='roll-stat'><ReactMarkdown>{critRollStr}</ReactMarkdown></div>
             <ReactMarkdown>{critStr}</ReactMarkdown>
+            <div className='roll-stat'><ReactMarkdown>{potionsRollStr}</ReactMarkdown></div>
             <ReactMarkdown>{potionsStr}</ReactMarkdown>
             <div className='md-mimic'>
               <p>You're ready to go! <a onClick={() => setStoryPassage(exit_pass)}>Start your adventure here</a>!</p>
