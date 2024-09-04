@@ -315,6 +315,15 @@ label {
   display: table-cell;
 }
 
+blockquote {
+  color: #bababa;
+  border: double;
+  margin-left: 2em;
+  margin-right: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 .center {
   text-align: center;
 }

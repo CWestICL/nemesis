@@ -6,13 +6,22 @@ import '../Game.css';
 import { getAbilityScore } from '../scripts/SharedFunctions';
 
 function CharacterSheet({ characterSheet, setCharacterSheet, mode, storyPassage }) {
-  //console.log('CharacterSheet Component Rendered');
+  const [treasure, setTreasure] = useState([]);
+  const [items, setItems] = useState([]);
+  console.log('CharacterSheet Component Rendered');
+
+  useEffect(() => {
+    //console.log('setTreasure Use Effect triggered');
+		setTreasure(characterSheet.treasure);
+		setItems(characterSheet.items);
+    //console.log('Story text:\n' + storyText);
+	}, [characterSheet]);
 
   function handleInput(event) {
     event.preventDefault();
-    console.log(characterSheet);
-    console.log(event.target.id.slice(6));
-    console.log(event.target.value);
+    //console.log(characterSheet);
+    //console.log(event.target.id.slice(6));
+    //console.log(event.target.value);
     let value = event.target.value;
     let id = event.target.id.slice(6).split('-');
     if (id.length > 1) {
@@ -228,31 +237,40 @@ function CharacterSheet({ characterSheet, setCharacterSheet, mode, storyPassage 
     let treasureHTML = (<textarea id="input-treasure" className='cs-items' value={characterSheet.treasure} onChange={(e) => handleInput(e)}></textarea>);
     if (mode == 'Automated') {
       let treasureList = '';
-      if (characterSheet.treasure.length > 0) {
-        for (let i = 0; i < characterSheet.treasure.length; i++) {
-          treasureList = treasureList + '* ' + characterSheet.treasure[i].name + ' (' + characterSheet.treasure[i].value + 'g)\n';
+      if (treasure.length > 0) {
+        for (let i = 0; i < treasure.length; i++) {
+          console.log('Treasure loop: ' + treasure[i].name);
+          treasureList = treasureList + '* ' + treasure[i].name + ' (' + treasure[i].value + 'g)\n';
+          console.log('Treasure list:');
+          console.log(treasureList);
         }
       }
-      treasureHTML = (<textarea disabled className='cs-items'>{treasureList}</textarea>);
+      //console.log(treasureList);
+      treasureHTML = (<textarea disabled className='cs-items' value={treasureList}></textarea>);
+      console.log('treasureHTML:');
+      console.log(treasureHTML);
     }
 
     let itemsHTML = (<textarea id="input-items" className='cs-items' value={characterSheet.items} onChange={(e) => handleInput(e)}></textarea>);
     if (mode == 'Automated') {
       let itemsList = '';
-      if (characterSheet.items.length > 0) {
-        for (let i = 0; i < characterSheet.items.length; i++) {
-          itemsList = itemsList + '* ' + characterSheet.items[i].name;
-          if (characterSheet.items[i].bonus) {
-            itemsList = itemsList + ' (' + characterSheet.items[i].bonus + ')';
+      if (items.length > 0) {
+        for (let i = 0; i < items.length; i++) {
+          itemsList = itemsList + '* ' + items[i].name;
+          if (items[i].bonus) {
+            itemsList = itemsList + ' (' + items[i].bonus + ')';
           }
           itemsList = itemsList + '\n';
         }
       }
       
-      itemsHTML = (<textarea disabled className='cs-items'>{itemsList}</textarea>);
+      itemsHTML = (<textarea disabled className='cs-items' value={itemsList}></textarea>);
     }
 
     const notesHTML = (<textarea id="input-notes" className='cs-notes'></textarea>);
+
+    console.log('treasureHTML 2:');
+    console.log(treasureHTML);
 
     return (
       <>
@@ -376,64 +394,6 @@ function CharacterSheet({ characterSheet, setCharacterSheet, mode, storyPassage 
 
           </div>
 
-        </div>
-      </>
-    )
-  }
-
-  if (mode === 'Manual Rolling') {
-    const name = characterSheet.name;
-
-    const might = characterSheet.abilities.might;
-    const initMight = characterSheet.abilities.init_might;
-    const magic = characterSheet.abilities.magic;
-    const initMagic = characterSheet.abilities.init_magic;
-    const sneak = characterSheet.abilities.sneak;
-    const initSneak = characterSheet.abilities.init_sneak;
-    const charm = characterSheet.abilities.charm;
-    const initCharm = characterSheet.abilities.init_charm;
-    const fluke = characterSheet.abilities.fluke;
-    const initFluke = characterSheet.abilities.init_fluke;
-    const health = characterSheet.stats.health;
-    const maxHealth = characterSheet.stats.max_health;
-
-    const crit = characterSheet.stats.crit;
-    const potions = characterSheet.stats.potions;
-    const gold = characterSheet.stats.gold;
-
-    const weapon = characterSheet.weapon;
-
-    const nameStr = '**Name**: ' + name;
-
-    const mightStr = '**MIGHT**: **' + getAbilityScore(might) + '** *(' + getAbilityScore(initMight) + ')*';
-    const magicStr = '**MAGIC**: **' + getAbilityScore(magic) + '** *(' + getAbilityScore(initMagic) + ')*';
-    const sneakStr = '**SNEAK**: **' + getAbilityScore(sneak) + '** *(' + getAbilityScore(initSneak) + ')*';
-    const charmStr = '**CHARM**: **' + getAbilityScore(charm) + '** *(' + getAbilityScore(initCharm) + ')*';
-    const flukeStr = '**FLUKE**: **' + getAbilityScore(fluke) + '** *(' + getAbilityScore(initFluke) + ')*';
-
-    const healthStr = '**Health**: **' + health + '**/*' + maxHealth + '*';
-    const critStr = '**Crit**: **' + crit + '**';
-    const potionsStr = '**Potions**: **' + potions + '**';
-    const goldStr = '**Gold**: **' + gold + '**';
-
-    const weaponStr = '**Weapon**: **' + weapon.name + '** (*' + weapon.bonus + '*)';
-
-    return (
-      <>
-        <div className='character-sheet'>
-          <ReactMarkdown>{nameStr}</ReactMarkdown>
-          <ReactMarkdown>***Abilities***</ReactMarkdown>
-          <ReactMarkdown>{mightStr}</ReactMarkdown>
-          <ReactMarkdown>{magicStr}</ReactMarkdown>
-          <ReactMarkdown>{sneakStr}</ReactMarkdown>
-          <ReactMarkdown>{charmStr}</ReactMarkdown>
-          <ReactMarkdown>{flukeStr}</ReactMarkdown>
-          <ReactMarkdown>***Stats***</ReactMarkdown>
-          <ReactMarkdown>{healthStr}</ReactMarkdown>
-          <ReactMarkdown>{critStr}</ReactMarkdown>
-          <ReactMarkdown>{potionsStr}</ReactMarkdown>
-          <ReactMarkdown>{goldStr}</ReactMarkdown>
-          <ReactMarkdown>{weaponStr}</ReactMarkdown>
         </div>
       </>
     )
