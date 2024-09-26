@@ -36,7 +36,7 @@ These are the different header sizes.
 
 >This is how quotes look.
 >
->This is normal text. This is *italic* text. This is **bold** text. This is ***bold italic*** text.
+>This is normal text. *This is italic text.* **This is bold text.** ***This is bold italic text.***
 
 Now that you've seen how text can be formatted, you may [begin your adventure here](0.b.Mode)!
 
@@ -84,6 +84,8 @@ If you want to test taking some **Treasure**, [go here](2.h.Treasure).
 If you want to test taking a **Weapon**, [go here](2.i.Weapon).
 
 If you want to test taking a **Cursed Item**, [go here](2.j.CursedItem).
+
+If you want to test **Tempting Fate**, [go here](2.k.TemptFate).
 
 # 2.a.Danger!
 
@@ -206,5 +208,25 @@ It is a **Helm of Pain** and it is **Cursed**! You cannot take it off by normal 
 Record the item in the ***'Items'*** field on your character sheet, including its effect.
 
 {TakeItem(name='Helm of Pain', auto=true, bonus='demote might 1')}
+
+To go back to the Hall of Testing, [go here](2.Entrance).
+
+# 2.k.TemptFate
+
+A piano suddenly drops from above.
+
+{TemptFate(lucky_pass='2.k.TemptFateLucky', unlucky_pass='2.k.TemptFateUnlucky')}
+
+To go back to the Hall of Testing, [go here](2.Entrance).
+
+# 2.k.TemptFateLucky
+
+You were lucky!
+
+To go back to the Hall of Testing, [go here](2.Entrance).
+
+# 2.k.TemptFateUnlucky
+
+You were unlucky!
 
 To go back to the Hall of Testing, [go here](2.Entrance).

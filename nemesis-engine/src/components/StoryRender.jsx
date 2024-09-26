@@ -11,6 +11,7 @@ import TakeGold from './TakeGold';
 import TakeItem from './TakeItem';
 import TakeTreasure from './TakeTreasure';
 import TakeWeapon from './TakeWeapon';
+import TemptFate from './TemptFate';
 
 function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterSheet, setCharacterSheet, mode, setMode }) {
   //console.log('StoryRender Component Rendered');
@@ -80,6 +81,10 @@ function StoryRender({ parsedStory, storyPassage, setStoryPassage, characterShee
           if (componentName == 'TakeWeapon') {
             //console.log('Replacing with TakeWeapon!');
             return (<TakeWeapon {...args} mode={mode} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} />);
+          }
+          if (componentName == 'TemptFate') {
+            //console.log('Replacing with TemptFate!');
+            return (<TemptFate {...args} mode={mode} setStoryPassage={setStoryPassage} characterSheet={characterSheet} setCharacterSheet={setCharacterSheet} />);
           }
         }
       }

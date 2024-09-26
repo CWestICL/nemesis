@@ -14,18 +14,23 @@ function AbilityRoll({ mode, setStoryPassage, characterSheet, ability, target, s
     //console.log('CS:');
     //console.log(characterSheet);
     let fateRoll = rollDie(12);
-    let fateHTML = (<p className='md-mimic roll-stat'>The <strong>Fate</strong> die rolls {aOrAn(fateRoll)} <em>{fateRoll}</em></p>);
+    let fateStr = 'The **Fate** die rolls ' + aOrAn(fateRoll) + ' *' + fateRoll + '*';
+    let fateHTML = (<div className='roll-stat'><ReactMarkdown>{fateStr}</ReactMarkdown></div>);
 
     let abilityRoll = rollAbility(characterSheet.abilities[ability]);
-    let abilityHTML = (<p className='md-mimic roll-stat'>Your <strong>{ability.toUpperCase()}</strong> die rolls {aOrAn(abilityRoll)} <em>{abilityRoll}</em></p>);
+    let abilityStr = 'Your **' + ability.toUpperCase() + '** die rolls ' + aOrAn(abilityRoll) + ' *' + abilityRoll + '*';
+    let abilityHTML = (<div className='roll-stat'><ReactMarkdown>{abilityStr}</ReactMarkdown></div>);
 
-    let resultHTML = (<p className='md-mimic roll-stat-result'>Your result is <strong>{fateRoll + abilityRoll}</strong></p>);
+    let resultStr = 'Your result is **' + (fateRoll + abilityRoll) + '**';
+    let resultHTML = (<div className='roll-stat-result'><ReactMarkdown>{resultStr}</ReactMarkdown></div>);
 
     if (fateRoll > 11) {
-      resultHTML = (<p className='md-mimic roll-stat-crit_succ'>You rolled a <strong>Critical Success</strong>!</p>);
+      resultStr = 'You rolled a **Critical Success**!';
+      resultHTML = (<div className='roll-stat-crit_succ'><ReactMarkdown>{resultStr}</ReactMarkdown></div>);
     }
     if (fateRoll < 2) {
-      resultHTML = (<p className='md-mimic roll-stat-crit_fail'>You rolled a <strong>Critical Fail</strong>!</p>);
+      resultStr = 'You rolled a **Critical Fail**!';
+      resultHTML = (<div className='roll-stat-crit_fail'><ReactMarkdown>{resultStr}</ReactMarkdown></div>);
     }
 
     let statsHTML = (<>
