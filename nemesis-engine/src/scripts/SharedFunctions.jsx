@@ -32,4 +32,30 @@ function aOrAn(number) {
   return a;
 }
 
-  export { getDieFaces, getAbilityScore, rollDie, rollAbility, aOrAn };
+function promoteDie(ability, characterSheet, setCharacterSheet) {
+  if (characterSheet.abilities[ability] < characterSheet.abilities['init_' + ability]) {
+    let value = characterSheet.abilities[ability] + 1;
+    setCharacterSheet({
+      ...characterSheet,
+      abilities: {
+        ...characterSheet.abilities,
+        [ability]: value,
+      }
+    })
+  }
+}
+
+function demoteDie(ability, characterSheet, setCharacterSheet) {
+  if (characterSheet.abilities[ability] > 1) {
+    let value = characterSheet.abilities[ability] - 1;
+    setCharacterSheet({
+      ...characterSheet,
+      abilities: {
+        ...characterSheet.abilities,
+        [ability]: value,
+      }
+    })
+  }
+}
+
+export { getDieFaces, getAbilityScore, rollDie, rollAbility, aOrAn, promoteDie, demoteDie };
